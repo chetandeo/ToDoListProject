@@ -1,0 +1,22 @@
+
+<div class="content-section implementation" *ngIf="userAuth">
+  <div class="card">          
+      <p-menubar [model]="items" >        
+        <i pButton pRipple type="button" label="AllToDos: {{complete.allTodo}}" class="p-button-rounded p-button-secondary"></i>
+        <i pButton pRipple type="button" label="Complete ToDos: {{complete.complete}}" class="p-button-rounded p-button-secondary"></i>
+        <i pButton pRipple type="button" label="Pending ToDos: {{complete.pending}}" class="p-button-rounded p-button-secondary"></i>
+        <button pButton pRipple type="button" label="Logout" class="p-button-rounded p-button-danger" (click)="onLogout()" ></button>        
+    </p-menubar>    
+  </div>
+  </div>
+  <div class="content-section implementation" *ngIf="!userAuth">
+    <div class="card">          
+        <p-menubar [model]="itemsPublic">
+          <button pButton pRipple type="button" label="Login/SignUp" class="p-button-rounded p-button-success" routerLink="/login" ></button>        
+      </p-menubar>    
+    </div>
+    </div>
+
+
+
+

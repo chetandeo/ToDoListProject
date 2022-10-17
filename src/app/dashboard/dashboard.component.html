@@ -1,0 +1,76 @@
+
+  <button pButton type="button" icon="pi pi-plus" iconPos="left" 
+  class="p-button-rounded p-button-outlined p-button-secondary" (click)="toDoEditMode()" routerLink="new"></button>
+
+  <button pButton *ngIf="cardTableView" type="button" icon="pi pi-table" iconPos="left"
+  class="p-button-rounded p-button-outlined p-button-secondary" style="font-size: 3rem; margin-right:10px" [style]="{'float':'right'}" (click)="switchToView()" ></button>
+  <button pButton *ngIf="!cardTableView" type="button" icon="pi pi-list" iconPos="left"
+  class="p-button-rounded p-button-outlined p-button-secondary" style="font-size: 3rem; margin-right:10px" [style]="{'float':'right'}" (click)="switchToView()" ></button>
+
+  <main *ngIf="!cardTableView">
+  <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" >
+      <div class="col" *ngFor="let todo of todos; index as i">
+        <div class="card h-100 shadow-sm"> <img
+            [src]="todo.active? urlPending : urlComplete"
+            class="card-img-top" alt="TodoStatus">
+          <div class="card-body">
+            <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary" [ngClass]="{'strike': !todo.active}">{{todo.title}}</span> </div>
+            <h5 class="card-title" [ngClass]="{'strike': !todo.active}">{{todo.desc}}</h5>
+            <div class="text-center my-4">
+              <span class="p-buttonset">
+                <button pButton type="button" class="p-button-sm p-button-success" (click)="onCheck(i)" [icon]="todo.active? 'pi pi-circle' : 'pi pi-check-circle'"></button>
+                <button pButton type="button" class="p-button-sm p-button-warning" (click)="toDoEditMode(i)" [routerLink]="[index, 'edit']" icon="pi pi-file-edit"></button>
+                <button pButton type="button" class="p-button-sm p-button-danger" (click)="deleteTodo(todo)" icon="pi pi-trash"></button>
+            </span>
+
+              <!-- <p-checkbox name="todo" label="Complete" [binary]="true" (onChange)="onCheck($event, i)"></p-checkbox>&nbsp;
+              <button pButton pRipple type="button" label="Edit" class="p-button-rounded p-button-danger" (click)="toDoEditMode(i)" [routerLink]="[index, 'edit']"></button>
+              <button pButton pRipple type="button" label="X" class="p-button-rounded p-button-danger" (click)="deleteTodo(todo)" ></button>  -->
+           </div>
+          </div>
+        </div>
+      </div>     
+    </div>
+  </div>
+</main>
+
+
+
+<div *ngIf="cardTableView">
+  <p-table [value]="todos" [scrollable]="true">
+    <ng-template pTemplate="header">
+        <tr>            
+            <th>Title</th>
+            <th>Description</th>
+            <th>User</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-todo let-i="rowIndex">
+        <tr >           
+            <td [ngClass]="{'strike': !todo.active}">{{todo.title}}</td>
+            <td [ngClass]="{'strike': !todo.active}">{{todo.desc}}</td>
+            <td [ngClass]="{'strike': !todo.active}">{{todo.user}}</td>
+            <td>
+              <span class="p-buttonset">
+                <button pButton type="button" class="p-button-sm p-button-success" (click)="onCheck(i)" [icon]="todo.active? 'pi pi-circle' : 'pi pi-check-circle'"></button>
+                <button pButton type="button" class="p-button-sm p-button-warning" (click)="toDoEditMode(i)" [routerLink]="[index, 'edit']" icon="pi pi-file-edit"></button>
+                <button pButton type="button" class="p-button-sm p-button-danger" (click)="deleteTodo(todo)" icon="pi pi-trash"></button>
+            </span>
+
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<p *ngIf="todos.length-1<0"><b>No ToDo's to display</b></p>
+</div>
+<div *ngIf="isLoading" class="center mt-3"><i class="pi pi-spin pi-spinner" style="font-size: 2rem; text-align:center;" ></i></div>
+
+ <router-outlet></router-outlet>
+
+ 
+  
+
+
+ 

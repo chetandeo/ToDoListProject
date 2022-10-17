@@ -1,0 +1,18 @@
+<div class="card text-center container mt-3" style="width: 30rem;">
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="card-img-top container" alt="Chicago Skyscrapers"
+    style="width:200px;height:150px;"/>
+    <div class="card-body">
+      <h5 class="card-title">{{currentUser}}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-light list-group-small">
+      <li class="list-group-item px-4"><b>Name: </b>{{currentUser}}</li>
+      <li class="list-group-item px-4"><b>Email: </b>{{currentUser}}</li>
+      <li class="list-group-item px-4"><b>Mobile No: </b>+91 {{currentUser}}</li>
+    </ul>
+    <div class="card-body">
+      <i class="fas fa-shopping-cart"><b>All ToDos: <h3>{{complete.allTodo}}</h3></b></i>&nbsp;<br>
+      <i><b>Complete ToDos: <span>{{complete.complete}}</span></b></i>&nbsp;<br>
+      <i><b>Pending ToDos: <span>{{complete.pending}}</span></b></i>
+    </div>
+  </div>

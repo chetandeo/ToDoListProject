@@ -1,0 +1,93 @@
+<p-message *ngIf="msgsErr" severity="error" text={{msgsErr}}></p-message>
+<p-message *ngIf="msgsSuc" severity="success" text={{msgsSuc}}></p-message>
+<div *ngIf="isLoading" class="center mt-3"><i class="pi pi-spin pi-spinner" style="font-size: 2rem; text-align:center;" ></i></div>
+
+<!-- //Login Form -->
+<div class="wrapper login" *ngIf="!loginMode">
+    <div class="container">
+        <div class="col-left">
+            <div class="login-text">
+                <h2>Welcome!</h2>
+                <p>Create your account.<br>For Free!</p>                
+                <button pButton pRipple type="button" label="Sign Up" class="btn" (click)="switchLoginMode()"></button>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <div class="login-form">
+                <small class="text-danger" *ngIf="loginForm.dirty">Please Entered Email and Password</small>
+                <h2>Login</h2>
+                <form (ngSubmit)="onLogin(loginForm.value.email, loginForm.value.pwd)" #loginForm="ngForm">
+                    <p>
+                        <label>Email address<span>*</span></label>
+                        <input type="text" placeholder="Email" required email ngModel name="email" #email="ngModel">
+                        <small *ngIf="!email.valid && email.touched" class="text-danger">Please Enter Email</small>
+                    </p>
+                    <p>
+                        <label>Password<span>*</span></label>                                                
+                        <input type="password" placeholder="Password" required ngModel name="pwd" #pwd="ngModel">
+                        <small *ngIf="!pwd.valid && pwd.touched" class="text-danger">Please Enter Password</small>
+                        
+                    </p>
+                    <p>                        
+                        <button pButton pRipple type="submit" [disabled]="!loginForm.valid" label="Sign In" class="p-button-rounded p-button-danger"></button>
+                    </p>
+                    <p>
+                        <a routerLink="/forgetpassword">Forgot password?</a>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="wrapper login" *ngIf="loginMode">
+    <div class="container">
+        <div class="col-left">
+            <div class="login-text">
+                <h2>Welcome!</h2>
+                <p>Create your account.<br>For Free!</p>                
+                <button pButton pRipple type="button" label="Login" class="btn" (click)="switchLoginMode()"></button>
+            </div>
+        </div>
+
+        <div class="col-right">
+            <div class="login-form">
+                <h2>Sign Up</h2>
+                <form (ngSubmit)="onSignUp(signUpForm)" #signUpForm="ngForm">
+                    <p>
+                        <label>Name<span>*</span></label>
+                        <input type="text" placeholder="Name" required ngModel name="name">
+                    </p>
+                    <p>
+                        <label>Email address<span>*</span></label>
+                        <input type="text" placeholder="Email address" required email ngModel name="email">
+                    </p>
+                    <p>
+                        <label>Mobile No<span>*</span></label>
+                        <input type="text" placeholder="Mobile No" required ngModel name="mobile">
+                    </p>
+                    <p>
+                        <label>Your First Company<span>*</span></label>
+                        <input type="text" placeholder="Answer Security Question" required ngModel name="securityQue">
+                    </p>
+                    <p>
+                        <label>Set Password<span>*</span></label>
+                        <input type="password" placeholder="Password" required ngModel name="pwd">
+                    </p>
+                    <p>                        
+                        <button pButton pRipple type="submit" label="Sign Up" class="btn" [disabled]="!signUpForm.valid"></button>
+                    </p>
+                    <p>
+                        <a routerLink="/forgetpassword">Forgot password?</a>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
